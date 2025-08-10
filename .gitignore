@@ -1,0 +1,26 @@
+
+.DS_Store
+Thumbs.db
+
+# Autosave files
+*.asv
+# P-code files
+*.p
+# MEX and BINF files
+*.mex*
+*.bin
+# Simulink cache and code generation folders
+slprj/
+_pre/
+_build/
+*build
+# Other temp files
+*.orig
+*.bak
+*.old
+*.tmp
+
+*.mat
+# Ignore the contents of the results/ directory...
+results/*
+!results/.gitkeep
