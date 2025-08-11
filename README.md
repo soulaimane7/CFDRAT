@@ -1,4 +1,4 @@
-# CFDRAT: A Fluid Simulation Platform You Can Master in 3 Minutes
+# CFDRAT: Just Draw It, Then Simulate It.
 [![Language](https://img.shields.io/badge/Language-MATLAB-orange.svg)]()
 
 [Chinese Version](https://github.com/RatEmperior/CFDRAT-zh) 
@@ -10,7 +10,7 @@
   <em>Flow Around Objects</em>
 </p>
 
-**CFDRAT** is a user-friendly CFD solver written in MATLAB, designed to make fluid mechanics simulations quick and fun. Here, no complex operations are needed - just an image is required to complete a simulation in minutes.
+**CFDRAT** is a MATLAB solver that turns any 2D image into a fluid dynamics simulation. Here, no complex operations are needed - just an image is required to complete a simulation in minutes.
 
 This simulation platform primarily targets laminar flow in regular regions. Created out of personal interest, it's intended for entertainment and educational purposes only.
 
@@ -92,3 +92,4 @@ Reference usage details
 
 -   **[RatEmperior](https://github.com/RatEmperior)**
     
+
